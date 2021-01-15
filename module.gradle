@@ -1,0 +1,29 @@
+def getPropertiesBoolean(String name) {
+    localPro.containsKey(name) && localPro.get(name).toBoolean()
+}
+
+ext {
+    File file = file(rootProject.projectDir.toString() + '\\' +'local.properties')
+    println 'load local.properties path=' + file.toString()
+    localPro = new Properties()
+    if (file.exists()) {
+        //加载资源
+        InputStream inputStream = file.newDataInputStream();
+        localPro.load(inputStream)
+        for (Object o : localPro.keySet()) {
+            name = o.toString()
+            if (name.startsWith('is')) {
+//                println name + '=' + getPropertiesBoolean(name)
+            }
+        }
+    }
+
+    isModuleCore = getPropertiesBoolean('isModuleCore')
+    isModuleLogin = getPropertiesBoolean('isModuleLogin')
+    isModuleChat = getPropertiesBoolean('isModuleChat')
+    isModuleFaceunity = getPropertiesBoolean('isModuleFaceunity')
+    isModuleLogin = getPropertiesBoolean('isModuleLogin')
+    isModuleIm = getPropertiesBoolean('isModuleIm')
+    isModuleGPay = getPropertiesBoolean('isModuleGPay')
+    isModuleGMeeting = getPropertiesBoolean('isModuleGMeeting')
+}

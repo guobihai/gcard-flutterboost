@@ -1,0 +1,54 @@
+apply plugin: 'com.android.application'
+apply from: "http://172.16.1.72:8899/ChengHui/gworld-gradle/raw/master/config.gradle"
+android {
+    compileSdkVersion project.ext.versions.compileSdkVersion
+    buildToolsVersion project.ext.versions.buildToolsVersion
+
+    defaultConfig {
+        applicationId "com.gcard.flutterboost"
+        minSdkVersion 19
+        targetSdkVersion project.ext.versions.targetSdkVersion
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        ndk {
+            //支持的SO库架构
+            abiFilters 'armeabi-v7a'//, 'armeabi' , 'x86', 'x86_64', 'arm64-v8a'/
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    repositories {
+        flatDir {
+            dirs 'libs'   // aar目录
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: "libs", include: ["*.jar"])
+    implementation 'androidx.appcompat:appcompat:1.2.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
+    implementation project(path: ':library')
+//    implementation project(path: ':flutterlibrary')
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+    implementation(name: 'flutter-release', ext: 'aar')
+    //flutter 相关
+    implementation 'io.flutter:flutter_embedding_release:1.0.0-ae90085a8437c0ae94d6b5ad2741739ebc742cb4'
+    implementation 'io.flutter:armeabi_v7a_release:1.0.0-ae90085a8437c0ae94d6b5ad2741739ebc742cb4'
+}
