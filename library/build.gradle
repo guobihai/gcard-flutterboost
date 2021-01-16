@@ -1,14 +1,15 @@
 apply plugin: 'com.android.library'
 apply from: '../nexus_maven.gradle'
 apply from: '../module.gradle'
-apply from: "http://172.16.1.72:8899/ChengHui/gworld-gradle/raw/master/config.gradle"
+//apply from: "http://172.16.1.72:8899/ChengHui/gworld-gradle/raw/master/config.gradle"
+group = 'com.smart.flutterboost'
 android {
-    compileSdkVersion project.ext.versions.compileSdkVersion
-    buildToolsVersion project.ext.versions.buildToolsVersion
+    compileSdkVersion 28
+    buildToolsVersion "28.0.3"
 
     defaultConfig {
         minSdkVersion 19
-        targetSdkVersion project.ext.versions.targetSdkVersion
+        targetSdkVersion 28
         versionCode 1
         versionName "1.0"
 
